@@ -72,9 +72,9 @@ const addTask = () => {
     </div>`
 
     tasksContainer.insertAdjacentHTML("beforeend", taskHTML);
-    displayCount(taskCount)
     newTaskInput.value = ""
     taskItemStorage.push(taskHTML)
+    displayCount(taskCount)
     attachEventListeners();
     saveToLocalStorage();
 }
