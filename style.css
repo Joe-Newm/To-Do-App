@@ -69,8 +69,9 @@ body {
     display: none;
 }
 
-#tasks {
+#pending-tasks {
     margin-top: .5em;
+    margin-bottom: 2.5em;
 }
 
 /* task styles */ 
@@ -85,12 +86,14 @@ body {
 .taskname {
     width: 80%;
     margin: .5em;
+    overflow-wrap:break-word;
 }
 
 .btn-container {
     gap: .5em;
     display: grid;
     grid-template-columns: 1fr 2fr;
+    align-items: center;
 
 }
 
@@ -102,4 +105,5 @@ body {
     padding: .5em;
     border-radius: .5em;
     cursor: pointer;
+    height: 30px
 }

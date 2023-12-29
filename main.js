@@ -32,22 +32,22 @@ const addTask = () => {
     tasksContainer.insertAdjacentHTML("beforeend", task);
     taskCount += 1;
     displayCount(taskCount)
-
-    const delBtn = tasksContainer.lastElementChild.querySelector(".delete")
-    delBtn.addEventListener("click", deleteTask)
-
     newTaskInput.value = ""
+
+    const delBtn = document.querySelectorAll(".delete")
+    delBtn.forEach(button => {
+        button.onclick = () => {
+            button.parentNode.parentNode.remove();
+        }
+    })
+
 }
 addBtn.addEventListener("click", addTask)
 
-const deleteTask = (event) => {
-    const task = event.target.closest(".task");
 
-    if (task) {
-        tasksContainer.removeChild(task);
-        taskCount -= 1;
-        displayCount(taskCount);
-    }
+
+const edit = (event) => {
+
 }
 
 
