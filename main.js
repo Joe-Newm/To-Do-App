@@ -3,12 +3,46 @@ const newTaskInput = document.querySelector("#wrapper input");
 const tasksContainer = document.querySelector("#tasks");
 const error = document.querySelector("#error");
 const countValue = document.querySelector(".count-value")
+const plural = document.querySelector(".plural-value")
+const delBtn = document.querySelectorAll(".delete")
+
 
 let taskCount = 0;
 
+let taskItemStorage = []
+
+
+delBtn.forEach(button => {
+    button.onclick = () => {
+        button.parentNode.parentNode.remove();
+        taskCount -= 1;
+        displayCount(taskCount);
+        localStorage.removeItem("storage")
+        
+    }
+})
+
+document.addEventListener("DOMContentLoaded", () => {
+    let storedtasks = JSON.parse(localStorage.getItem("storage"))
+    if (storedtasks) {
+    tasksContainer.insertAdjacentHTML("beforeend", storedtasks);
+    taskCount = taskItemStorage.length
+    }
+    displayCount(taskCount)
+    newTaskInput.value = ""
+
+})
+
 const displayCount = (taskCount) => {
     countValue.innerText = taskCount;
+    if (taskCount > 1 || taskCount == 0) {
+        plural.innerText = "s"
+    } else {
+        plural.innerText = ""
+    }
+
 }
+
 
 const addTask = () => {
     const taskName = newTaskInput.value.trim()
@@ -33,11 +67,19 @@ const addTask = () => {
     taskCount += 1;
     displayCount(taskCount)
     newTaskInput.value = ""
+    taskItemStorage.push(task)
+
+    //save to local storage?
+    localStorage.setItem("storage", JSON.stringify(taskItemStorage.join(' ')))
 
     const delBtn = document.querySelectorAll(".delete")
     delBtn.forEach(button => {
         button.onclick = () => {
             button.parentNode.parentNode.remove();
+            taskCount -= 1;
+            displayCount(taskCount);
+            localStorage.removeItem("storage")
+            
         }
     })
 
