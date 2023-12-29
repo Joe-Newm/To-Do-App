@@ -10,8 +10,6 @@ let taskItemStorage = []
 let taskCount = taskItemStorage.length
 
 
-
-
 // call when adding tasks to save to local storage
 const saveToLocalStorage = () => {
     localStorage.setItem("storage", JSON.stringify(taskItemStorage));
@@ -22,10 +20,12 @@ const attachEventListeners = () => {
 const delBtn = document.querySelectorAll(".delete")
 delBtn.forEach((button, index) => {
     button.onclick = () => {
-    button.parentNode.parentNode.remove();
-    taskItemStorage.splice(index, 1);
-    displayCount(taskCount);
-    saveToLocalStorage()
+        taskItemStorage.splice(index, 1);
+        displayCount(taskCount);
+        saveToLocalStorage()
+        button.parentElement.parentElement.remove()
+        updateTaskCount();
+        attachEventListeners();
     };
 });
 };
@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     tasksContainer.insertAdjacentHTML("beforeend", taskItemStorage.join(""));
     attachEventListeners();
     displayCount(taskCount)
-    newTaskInput.value = ""
 })
 
 const displayCount = (taskCount) => {
@@ -50,6 +49,10 @@ const displayCount = (taskCount) => {
     }
 
 }
+const updateTaskCount = () => {
+    taskCount = taskItemStorage.length;
+    displayCount(taskCount);
+  };
 
 
 const addTask = () => {
@@ -74,7 +77,7 @@ const addTask = () => {
     tasksContainer.insertAdjacentHTML("beforeend", taskHTML);
     newTaskInput.value = ""
     taskItemStorage.push(taskHTML)
-    displayCount(taskCount)
+    updateTaskCount();
     attachEventListeners();
     saveToLocalStorage();
 }
