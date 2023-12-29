@@ -4,36 +4,44 @@ const tasksContainer = document.querySelector("#tasks");
 const error = document.querySelector("#error");
 const countValue = document.querySelector(".count-value")
 const plural = document.querySelector(".plural-value")
-const delBtn = document.querySelectorAll(".delete")
 
-
-let taskCount = 0;
-
+let storedtasks = JSON.parse(localStorage.getItem("storage")) 
 let taskItemStorage = []
+let taskCount = taskItemStorage.length
 
 
-delBtn.forEach(button => {
+
+
+// call when adding tasks to save to local storage
+const saveToLocalStorage = () => {
+    localStorage.setItem("storage", JSON.stringify(taskItemStorage));
+  };
+
+// attach delete button event listener to added task
+const attachEventListeners = () => {
+const delBtn = document.querySelectorAll(".delete")
+delBtn.forEach((button, index) => {
     button.onclick = () => {
-        button.parentNode.parentNode.remove();
-        taskCount -= 1;
-        displayCount(taskCount);
-        localStorage.removeItem("storage")
-        
-    }
-})
+    button.parentNode.parentNode.remove();
+    taskItemStorage.splice(index, 1);
+    displayCount(taskCount);
+    saveToLocalStorage()
+    };
+});
+};
 
 document.addEventListener("DOMContentLoaded", () => {
-    let storedtasks = JSON.parse(localStorage.getItem("storage"))
-    if (storedtasks) {
-    tasksContainer.insertAdjacentHTML("beforeend", storedtasks);
-    taskCount = taskItemStorage.length
+    if (Array.isArray(storedtasks)) {
+        taskItemStorage = taskItemStorage.concat(storedtasks);
     }
+    tasksContainer.insertAdjacentHTML("beforeend", taskItemStorage.join(""));
+    attachEventListeners();
     displayCount(taskCount)
     newTaskInput.value = ""
-
 })
 
 const displayCount = (taskCount) => {
+    taskCount = taskItemStorage.length
     countValue.innerText = taskCount;
     if (taskCount > 1 || taskCount == 0) {
         plural.innerText = "s"
@@ -54,7 +62,7 @@ const addTask = () => {
         return;
     } 
 
-    const task = `<div class="task">
+    const taskHTML = `<div class="task">
     <input type="checkbox" class="task-check">
     <span class="taskname">${taskName}</span>
     <div class="btn-container">
@@ -63,26 +71,12 @@ const addTask = () => {
     </div>
     </div>`
 
-    tasksContainer.insertAdjacentHTML("beforeend", task);
-    taskCount += 1;
+    tasksContainer.insertAdjacentHTML("beforeend", taskHTML);
     displayCount(taskCount)
     newTaskInput.value = ""
-    taskItemStorage.push(task)
-
-    //save to local storage?
-    localStorage.setItem("storage", JSON.stringify(taskItemStorage.join(' ')))
-
-    const delBtn = document.querySelectorAll(".delete")
-    delBtn.forEach(button => {
-        button.onclick = () => {
-            button.parentNode.parentNode.remove();
-            taskCount -= 1;
-            displayCount(taskCount);
-            localStorage.removeItem("storage")
-            
-        }
-    })
-
+    taskItemStorage.push(taskHTML)
+    attachEventListeners();
+    saveToLocalStorage();
 }
 addBtn.addEventListener("click", addTask)
 
