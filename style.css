@@ -6,7 +6,7 @@
 
 body {
     height: 100vh;
-    background: rgb(235, 234, 230);
+    background: rgb(242, 241, 239);
 }
 
 .app {
@@ -79,10 +79,19 @@ body {
     display: flex;
     border-left: 2px solid #5a95ff;
     padding: .5em;
-    margin-bottom: .5em;
+    margin-bottom: 1em;
     margin-top: .5em;
-    background-color:rgb(235, 234, 230);
+    background-color: rgb(242, 241, 239);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    
 }
+
+.task:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 .5em 1em rgba(0,0,0,0.1);
+
+}
+
 .taskname {
     width: 80%;
     margin: .5em;
