@@ -2,8 +2,10 @@ const addBtn = document.querySelector("#add-btn");
 const newTaskInput = document.querySelector("#wrapper input");
 const tasksContainer = document.querySelector("#tasks");
 const error = document.querySelector("#error");
-const countValue = document.querySelector(".count-value")
-const plural = document.querySelector(".plural-value")
+const countValue = document.querySelector(".count-value");
+const plural = document.querySelector(".plural-value");
+const home = document.querySelector("#home");
+const notes = document.querySelector("#notes");
 
 let storedtasks = JSON.parse(localStorage.getItem("storage")) 
 let taskItemStorage = []
@@ -88,6 +90,23 @@ addBtn.addEventListener("click", addTask)
 const edit = (event) => {
 
 }
+
+
+// nav functionality
+home.addEventListener("click", () => {
+    home.classList.toggle("highlight")
+    home.classList.toggle("no-hover")
+    notes.classList.remove("highlight")
+    notes.classList.remove("no-hover")
+})
+
+notes.addEventListener("click", () => {
+    notes.classList.toggle("highlight")
+    notes.classList.toggle("no-hover")
+    home.classList.remove("highlight")
+    home.classList.remove("no-hover")
+})
+
 
 
 
