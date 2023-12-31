@@ -6,107 +6,108 @@ const countValue = document.querySelector(".count-value");
 const plural = document.querySelector(".plural-value");
 const home = document.querySelector("#home");
 const notes = document.querySelector("#notes");
+const todoApp = document.querySelector(".container");
+let navItems = document.querySelectorAll(".nav-item");
+let appItems = document.querySelectorAll(".app");
 
-let storedtasks = JSON.parse(localStorage.getItem("storage")) 
-let taskItemStorage = []
-let taskCount = taskItemStorage.length
-
+let storedtasks = JSON.parse(localStorage.getItem("storage"));
+let taskItemStorage = [];
+let taskCount = taskItemStorage.length;
 
 // call when adding tasks to save to local storage
 const saveToLocalStorage = () => {
-    localStorage.setItem("storage", JSON.stringify(taskItemStorage));
-  };
+  localStorage.setItem("storage", JSON.stringify(taskItemStorage));
+};
 
 // attach delete button event listener to added task
 const attachEventListeners = () => {
-const delBtn = document.querySelectorAll(".delete")
-delBtn.forEach((button, index) => {
+  const delBtn = document.querySelectorAll(".delete");
+  delBtn.forEach((button, index) => {
     button.onclick = () => {
-        taskItemStorage.splice(index, 1);
-        displayCount(taskCount);
-        saveToLocalStorage()
-        button.parentElement.parentElement.remove()
-        updateTaskCount();
-        attachEventListeners();
+      taskItemStorage.splice(index, 1);
+      displayCount(taskCount);
+      saveToLocalStorage();
+      button.parentElement.parentElement.remove();
+      updateTaskCount();
+      attachEventListeners();
     };
-});
+  });
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (Array.isArray(storedtasks)) {
-        taskItemStorage = taskItemStorage.concat(storedtasks);
-    }
-    tasksContainer.insertAdjacentHTML("beforeend", taskItemStorage.join(""));
-    attachEventListeners();
-    displayCount(taskCount)
-})
+  if (Array.isArray(storedtasks)) {
+    taskItemStorage = taskItemStorage.concat(storedtasks);
+  }
+  tasksContainer.insertAdjacentHTML("beforeend", taskItemStorage.join(""));
+  attachEventListeners();
+  displayCount(taskCount);
+});
 
 const displayCount = (taskCount) => {
-    taskCount = taskItemStorage.length
-    countValue.innerText = taskCount;
-    if (taskCount > 1 || taskCount == 0) {
-        plural.innerText = "s"
-    } else {
-        plural.innerText = ""
-    }
-
-}
+  taskCount = taskItemStorage.length;
+  countValue.innerText = taskCount;
+  if (taskCount > 1 || taskCount == 0) {
+    plural.innerText = "s";
+  } else {
+    plural.innerText = "";
+  }
+};
 const updateTaskCount = () => {
-    taskCount = taskItemStorage.length;
-    displayCount(taskCount);
-  };
-
+  taskCount = taskItemStorage.length;
+  displayCount(taskCount);
+};
 
 const addTask = () => {
-    const taskName = newTaskInput.value.trim()
-    error.style.display = "none";
-    if (!taskName) {
-        setTimeout(() => {
-            error.style.display = "block";
-        }, 200)
-        return;
-    } 
+  const taskName = newTaskInput.value.trim();
+  error.style.display = "none";
+  if (!taskName) {
+    setTimeout(() => {
+      error.style.display = "block";
+    }, 200);
+    return;
+  }
 
-    const taskHTML = `<div class="task">
+  const taskHTML = `<div class="task">
     <input type="checkbox" class="task-check">
     <span class="taskname">${taskName}</span>
     <div class="btn-container">
     <button class="edit">edit</button>
     <button class="delete">delete</button>
     </div>
-    </div>`
+    </div>`;
 
-    tasksContainer.insertAdjacentHTML("beforeend", taskHTML);
-    newTaskInput.value = ""
-    taskItemStorage.push(taskHTML)
-    updateTaskCount();
-    attachEventListeners();
-    saveToLocalStorage();
-}
-addBtn.addEventListener("click", addTask)
+  tasksContainer.insertAdjacentHTML("beforeend", taskHTML);
+  newTaskInput.value = "";
+  taskItemStorage.push(taskHTML);
+  updateTaskCount();
+  attachEventListeners();
+  saveToLocalStorage();
+};
+addBtn.addEventListener("click", addTask);
 
-
-
-const edit = (event) => {
-
-}
-
+const edit = (event) => {};
 
 // nav functionality
-home.addEventListener("click", () => {
-    home.classList.toggle("highlight")
-    home.classList.toggle("no-hover")
-    notes.classList.remove("highlight")
-    notes.classList.remove("no-hover")
-})
+function navButton(clickedButton) {
+  // remove 'highlight' and 'non-hover' from buttons
+  navItems.forEach((button) => {
+    button.classList.remove("highlight", "no-hover");
+    // make all apps hidden
+    appItems.forEach((app) => {
+      app.setAttribute("hidden", "");
+    });
+  });
+  // add 'highlight' and 'no-hover' to clicked button
+  clickedButton.classList.add("highlight", "no-hover");
+  // remove hidden from selected app
+  document
+    .querySelector(`#${clickedButton.innerText}-app`)
+    .removeAttribute("hidden");
+}
 
-notes.addEventListener("click", () => {
-    notes.classList.toggle("highlight")
-    notes.classList.toggle("no-hover")
-    home.classList.remove("highlight")
-    home.classList.remove("no-hover")
-})
-
-
-
-
+// add event listener to all buttons in the navigation
+navItems.forEach((button) => {
+  button.addEventListener("click", () => {
+    navButton(button);
+  });
+});
