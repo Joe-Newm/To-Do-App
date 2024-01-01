@@ -113,18 +113,18 @@ nav {
   cursor: pointer;
 }
 #error {
-  text-align: center;
+  text-align:left;
   background-color: #ffffff;
   color: #ff5c5c;
-  margin-top: 1.5em;
-  padding: 1em 0;
+  margin-top: .2em;
+  padding: .5em 0;
   border-radius: 0.8em;
   display: none;
 }
 
 #pending-tasks {
   margin-top: 0.5em;
-  margin-bottom: 2.5em;
+  margin-bottom: 1.5em;
 }
 
 /* task styles */
