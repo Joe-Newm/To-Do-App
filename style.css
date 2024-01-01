@@ -18,7 +18,7 @@ header {
 
 .main-container {
   display: grid;
-  grid-template-columns: 400px 8fr;
+  grid-template-columns: 300px 8fr;
   height: 100vh;
   overflow-y: auto;
 }
@@ -34,7 +34,7 @@ header {
 
 nav {
   background-color: rgb(242, 241, 239);
-  min-width: 400px;
+  min-width: 100px;
   padding: 3em;
 }
 
@@ -55,7 +55,7 @@ nav {
   border-radius: 10px;
   border: none;
   outline: none;
-  width: 280px;
+  width: 200px;
 }
 
 .nav-item:not(.no-hover) :hover {

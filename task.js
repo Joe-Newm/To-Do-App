@@ -116,3 +116,8 @@ const addTask = () => {
 };
 // event listener for the add button
 addBtn.addEventListener("click", addTask);
+newTaskInput.addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+    addTask();
+  }
+})
