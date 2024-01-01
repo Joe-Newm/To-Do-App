@@ -26,8 +26,21 @@ const attachEventListeners = () => {
       attachEventListeners();
     };
   });
+  // adds the event listener for the edit buttons on each task
+  const editBtn = document.querySelectorAll(".edit");
+  editBtn.forEach((button) => {
+    button.onclick = () => {
+      let text = button.parentElement.parentElement.querySelector(".taskname");
+      let inputElement = document.createElement("input");
+      inputElement.type = "text";
+      inputElement.value = text.innerText;
+      text.parentNode.replaceChild(inputElement, text);
+      console.log("hey");
+    };
+  });
 };
 
+// takes the tasks stored in the local storage and puts them back on the screen when loading website
 document.addEventListener("DOMContentLoaded", () => {
   if (Array.isArray(storedtasks)) {
     taskItemStorage = taskItemStorage.concat(storedtasks);
@@ -37,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   displayCount(taskCount);
 });
 
+// changes the plural form of the word task
 const displayCount = (taskCount) => {
   taskCount = taskItemStorage.length;
   countValue.innerText = taskCount;
@@ -46,11 +60,13 @@ const displayCount = (taskCount) => {
     plural.innerText = "";
   }
 };
+// updates the task count, should be called when adding or deleting tasks
 const updateTaskCount = () => {
   taskCount = taskItemStorage.length;
   displayCount(taskCount);
 };
 
+// function for adding new task
 const addTask = () => {
   const taskName = newTaskInput.value.trim();
   error.style.display = "none";
@@ -77,6 +93,5 @@ const addTask = () => {
   attachEventListeners();
   saveToLocalStorage();
 };
+// event listener for the add button
 addBtn.addEventListener("click", addTask);
-
-const edit = (event) => {};
