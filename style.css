@@ -70,8 +70,9 @@ nav {
 #Tasks-app {
   font-family: "poppins", sans-serif;
   min-width: 300px;
-  overflow: hidden;
+  overflow-y: auto;
   background-color: white;
+  padding-bottom: 2em;
 }
 
 .container {
@@ -140,7 +141,7 @@ nav {
 
 .task:hover {
   transform: translateY(-3px);
-  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
 }
 
 .taskname {
