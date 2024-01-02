@@ -155,7 +155,8 @@ const addTask = () => {
         </div>
     </div>`;
 
-  tasksContainer.insertAdjacentHTML("beforeend", taskHTML);
+  taskItemStorage.push(taskHTML);
+  tasksContainer.innerHTML = taskItemStorage.join("");
   newTaskInput.value = "";
   updateTaskCount();
   attachEventListeners();
