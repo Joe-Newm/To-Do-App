@@ -11,9 +11,19 @@ body {
 }
 
 header {
-  background-color: #d1d3d4;
+  background-color: rgb(242, 241, 239);
   padding: 20px;
   height: 3vh;
+  border-bottom: 2px solid #d1d3d4;
+}
+
+.logo {
+  font-family: "poppins", sans-serif;
+  display:flex;
+  line-height: 28px;
+  text-align: left;
+  text-indent: 38px;
+  font-size: 2.5em;
 }
 
 .main-container {
