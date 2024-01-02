@@ -36,6 +36,7 @@ nav {
   background-color: rgb(242, 241, 239);
   min-width: 100px;
   padding: 3em;
+  border-right: 2px solid #d1d3d4;
 }
 
 .inner-nav-container {
@@ -46,12 +47,12 @@ nav {
 .nav-item {
   font-family: "poppins", sans-serif;
   font-weight: 600;
-  font-size: 1.5em;
-  height: 30px;
+  font-size: 1.3em;
+  height: 35px;
+  line-height: 30px;
   text-align: left;
   text-indent: 10px;
   margin-bottom: 5px;
-  padding-bottom: 38px;
   border-radius: 10px;
   border: none;
   outline: none;
@@ -59,6 +60,8 @@ nav {
 }
 
 .nav-item:not(.no-hover) :hover {
+  height: 35px;
+  line-height: 35px;
   background-color: #dfe3e4;
   border-radius: 10px;
 }
@@ -83,8 +86,9 @@ nav {
 #wrapper {
   position: relative;
   display: grid;
-  grid-template-columns: 8fr 4fr;
-  gap: 1em;
+  grid-template-columns: 9fr 3fr;
+  gap: 2em;
+  width:65%;
 }
 
 #wrapper input {
@@ -101,6 +105,7 @@ nav {
   outline: none;
   border-color: #5a95ff;
 }
+
 #wrapper button {
   position: relative;
   border-radius: 0.5em;
@@ -112,6 +117,7 @@ nav {
   color: #ffffff;
   cursor: pointer;
 }
+
 #error {
   text-align:left;
   background-color: #ffffff;
@@ -124,30 +130,42 @@ nav {
 
 #pending-tasks {
   margin-top: 0.5em;
-  margin-bottom: 1.5em;
+  margin-bottom: 2.5em;
 }
 
 /* task styles */
-.task {
+.task, .completed-task {
+  font-family: "poppins", sans-serif;
   display: flex;
-  border-left: 2px solid #5a95ff;
+  border: 2px solid #d1d3d4;
+  border-radius: 10px;
   padding: 0.5em;
   margin-bottom: 1em;
   margin-top: 0.5em;
   background-color: rgb(242, 241, 239);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   min-width: 300px;
+  align-items: center;
 }
 
-.task:hover {
+.task:hover, .completed-task:hover {
   transform: translateY(-3px);
   box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
 }
 
 .taskname {
   width: 80%;
-  margin: 0.5em;
+  margin: 0.6em;
   overflow-wrap: break-word;
+}
+
+.task-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5em;
+  height: 20px;
+  width: 20px;
 }
 
 .btn-container {

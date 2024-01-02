@@ -1,6 +1,7 @@
 const addBtn = document.querySelector("#add-btn");
 const newTaskInput = document.querySelector("#wrapper input");
 const tasksContainer = document.querySelector("#tasks");
+const completedTasksContainer = document.querySelector("#tasks-completed");
 const error = document.querySelector("#error");
 const countValue = document.querySelector(".count-value");
 const plural = document.querySelector(".plural-value");
@@ -8,19 +9,23 @@ let taskDiv = document.querySelectorAll(".task");
 let taskarray = Array.from(taskDiv);
 let taskHTMLArray = taskarray.map(taskDiv => taskDiv.innerHTML )
 
-let storedtasks = JSON.parse(localStorage.getItem("storage"));
+let storedtasks = JSON.parse(localStorage.getItem("tasks"));
+let storedCompletedTasks = JSON.parse(localStorage.getItem("completed-tasks"))
 let taskItemStorage = []
 let taskCount = taskItemStorage.length;
+let completedTasks = []
 
 // call when adding tasks to save to local storage
 const saveToLocalStorage = () => {
   gatherTasks();
-  localStorage.setItem("storage", JSON.stringify(taskItemStorage));
+  localStorage.setItem("tasks", JSON.stringify(taskItemStorage));
+  localStorage.setItem("completed-tasks", JSON.stringify(completedTasks))
+  updateTaskCount()
 };
 
 // function to gather task divs
 const gatherTasks = () => {
-  localStorage.removeItem("storage")
+  localStorage.removeItem("tasks")
   taskItemStorage = []
   let taskDiv = document.querySelectorAll(".task");
   let taskarray = Array.from(taskDiv);
@@ -34,8 +39,11 @@ const attachEventListeners = () => {
   const delBtn = document.querySelectorAll(".delete");
   delBtn.forEach((button, index) => {
     button.onclick = () => {
-      taskItemStorage.splice(index, 1);
-      displayCount(taskCount);
+      if (button.parentElement.parentElement.classList.contains("completed-task")) {
+        completedTasks.splice(completedTasks.findIndex((task) => task === button.parentElement.outerHTML), 1 );
+      } else {
+        taskItemStorage.splice(taskItemStorage.findIndex((task) => task === button.parentElement.outerHTML), 1 );
+      }
       button.parentElement.parentElement.remove();
       saveToLocalStorage();
       updateTaskCount();  
@@ -60,6 +68,41 @@ const attachEventListeners = () => {
       })
     };
   });
+  // task checkbox functionality
+let checkboxes = document.querySelectorAll(".task-check")
+
+checkboxes.forEach((checkbox, index) => {
+  checkbox.addEventListener("change", () => {
+  if (checkbox.checked === true) {
+    checkbox.parentElement.classList.remove("task");
+    checkbox.parentElement.classList.add("completed-task");
+    checkbox.setAttribute("checked", "")
+    completedTasks.push(checkbox.parentElement.outerHTML);
+    taskItemStorage.splice(  (checkbox.parentElement.outerHTML), 1 );
+    saveToLocalStorage();
+    updateTaskCount();  
+    tasksContainer.innerHTML = taskItemStorage.join("");
+    completedTasksContainer.innerHTML = completedTasks.join("");
+    attachEventListeners();
+    
+    console.log(completedTasks)
+  }
+
+  if (checkbox.checked === false) {
+    checkbox.parentElement.classList.remove("completed-task");
+    checkbox.parentElement.classList.add("task");
+    checkbox.removeAttribute("checked");
+    taskItemStorage.push(checkbox.parentElement.innerHTML);
+    completedTasks.splice(  (checkbox.parentElement.outerHTML), 1 );
+    saveToLocalStorage();
+    updateTaskCount();
+    tasksContainer.innerHTML = taskItemStorage.join("");
+    completedTasksContainer.innerHTML = completedTasks.join("");
+    attachEventListeners()  
+  }
+  
+})
+})
 };
 
 // takes the tasks stored in the local storage and puts them back on the screen when loading website
@@ -67,7 +110,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (Array.isArray(storedtasks)) {
     taskItemStorage = taskItemStorage.concat(storedtasks);
   }
-  tasksContainer.insertAdjacentHTML("beforeend", taskItemStorage.join(""));
+  if (Array.isArray(storedCompletedTasks)) {
+    completedTasks = completedTasks.concat(storedCompletedTasks);
+  }
+  tasksContainer.innerHTML = taskItemStorage.join("");
+  completedTasksContainer.innerHTML = completedTasks.join("");
   attachEventListeners();
   updateTaskCount()
 });
@@ -114,10 +161,27 @@ const addTask = () => {
   attachEventListeners();
   saveToLocalStorage();
 };
-// event listener for the add button
+
+// event listener for the add button or pressing Enter
 addBtn.addEventListener("click", addTask);
 newTaskInput.addEventListener("keyup", (event) => {
   if (event.key === "Enter") {
     addTask();
+   
   }
 })
+
+
+
+
+
+
+// checkbox.addEventListener("change", () => {
+//   if (checkbox.checked) {
+//     checkbox.parentElement.parentElement.
+//   }
+//   else {
+
+//   }
+// })
+

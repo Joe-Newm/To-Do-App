@@ -20,6 +20,7 @@
           <button class="nav-item highlight no-hover" id="tasks-nav">
             <p>Tasks</p>
           </button>
+          <button class="nav-item" id="completed-nav"><p>Completed</p></button>
           <button class="nav-item" id="notes-nav"><p>Notes</p></button>
         </div>
       </nav>
@@ -30,17 +31,20 @@
               <input type="text" placeholder="Task to be done..." />
               <button id="add-btn">Add</button>
             </div>
+            <p id="pending-tasks">
+              you have <span class="count-value">0</span> task<span
+              class="plural-value"
+              >s</span
+              >
+              to complete.
+            </p>
             <div id="tasks">
-              <p id="pending-tasks">
-                you have <span class="count-value">0</span> task<span
-                class="plural-value"
-                >s</span
-                >
-                to complete.
-              </p>
               <p id="error">input can not be empty!</p>
             </div>
           </div>
+        </div>
+        <div hidden id="Completed-app" class="app">
+          <div id="tasks-completed"></div>
         </div>
         <div hidden id="Notes-app" class="app">
           <div>
