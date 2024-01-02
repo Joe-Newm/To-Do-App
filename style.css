@@ -67,17 +67,18 @@ nav {
   border: none;
   outline: none;
   width: 200px;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .nav-item:not(.no-hover) :hover {
   height: 35px;
   line-height: 35px;
-  background-color: #dfe3e4;
+  background-color: rgb(229, 228, 227);
   border-radius: 10px;
 }
 
 .highlight {
-  background-color: #d1d3d4;
+  background-color: rgb(202, 201, 200);
 }
 
 #Tasks-app {
