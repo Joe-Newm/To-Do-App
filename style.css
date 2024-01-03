@@ -113,6 +113,7 @@ nav {
   grid-template-columns: 9fr 3fr;
   gap: 2em;
   width:65%;
+  margin-left:1em
 }
 
 #wrapper input {
@@ -155,6 +156,7 @@ nav {
 #pending-tasks {
   margin-top: 0.5em;
   margin-bottom: 2.5em;
+  margin-left: 1em;
 }
 
 /* task styles */
@@ -166,6 +168,8 @@ nav {
   padding: 0.5em;
   margin-bottom: 1em;
   margin-top: 0.5em;
+  margin-left: 1em;
+  margin-right: 1em;
   background-color: rgb(242, 241, 239);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   min-width: 300px;
@@ -174,7 +178,7 @@ nav {
 
 .task:hover, .completed-task:hover {
   transform: translateY(-3px);
-  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+  box-shadow: 0em 0.5em 1em rgba(0, 0, 0, 0.2);
 }
 
 .taskname {
