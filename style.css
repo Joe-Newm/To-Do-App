@@ -154,9 +154,7 @@ nav {
 }
 
 #pending-tasks {
-  margin-top: 0.5em;
-  margin-bottom: 2.5em;
-  margin-left: 1em;
+  margin: 0.5em 0em 2.5em 1em;
 }
 
 /* task styles */
@@ -166,10 +164,7 @@ nav {
   border: 2px solid #d1d3d4;
   border-radius: 10px;
   padding: 0.5em;
-  margin-bottom: 1em;
-  margin-top: 0.5em;
-  margin-left: 1em;
-  margin-right: 1em;
+  margin: 0.5em 1em 1em 1em;
   background-color: rgb(242, 241, 239);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   min-width: 300px;
