@@ -21,12 +21,12 @@ header {
 
 .logo {
   font-family: "poppins", sans-serif;
-  display:flex;
+  display: flex;
   line-height: 30px;
   text-align: left;
   text-indent: 15px;
   font-size: 2.3em;
-  color: #242f36
+  color: #242f36;
 }
 
 .dot {
@@ -113,12 +113,12 @@ nav {
   display: grid;
   grid-template-columns: 9fr 3fr;
   gap: 2em;
-  width:65%;
-  margin-left:1em
+  width: 65%;
+  margin-left: 1em;
 }
 
 #wrapper input {
-  width: 100%;
+  min-width: 300px;
   background-color: transparent;
   color: #111111;
   font-family: "poppins", sans-serif;
@@ -144,14 +144,15 @@ nav {
   outline: none;
   color: #ffffff;
   cursor: pointer;
+  width: 150px;
 }
 
 #error {
-  text-align:left;
+  text-align: left;
   background-color: #ffffff;
   color: rgb(240, 91, 22);
-  margin-top: .2em;
-  padding: .5em 0;
+  margin-top: 0.2em;
+  padding: 0.5em 0;
   border-radius: 0.8em;
   display: none;
 }
@@ -162,7 +163,8 @@ nav {
 }
 
 /* task styles */
-.task, .completed-task {
+.task,
+.completed-task {
   font-family: "poppins", sans-serif;
   color: #242f36;
   display: flex;
@@ -174,9 +176,11 @@ nav {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   min-width: 300px;
   align-items: center;
+  position: relative;
 }
 
-.task:hover, .completed-task:hover {
+.task:hover,
+.completed-task:hover {
   transform: translateY(-3px);
   box-shadow: 0em 0.5em 1em rgba(0, 0, 0, 0.2);
 }
@@ -184,6 +188,7 @@ nav {
 .taskname {
   width: 80%;
   margin: 0.6em;
+  margin-right: 1em;
   overflow-wrap: break-word;
 }
 
@@ -195,14 +200,14 @@ nav {
   height: 20px;
   width: 20px;
   accent-color: rgb(240, 91, 22);
-  
 }
 
 .btn-container {
   gap: 0.5em;
   display: flex;
-  height:max-content;
-  
+  position: absolute;
+  right: 20px;
+  margin-left: 2px;
 }
 
 .delete,
@@ -220,5 +225,3 @@ nav {
   height: 40px;
   width: 40px;
 }
-
-
