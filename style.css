@@ -225,3 +225,13 @@ nav {
   height: 40px;
   width: 40px;
 }
+
+.svg-edit {
+  height: 10;
+  width: 10;
+}
+
+.custom-line {
+  border: 1px solid #d1d3d4;
+  margin: 1em 0em 1em 0em;
+}
