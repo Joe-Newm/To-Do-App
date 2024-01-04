@@ -48,10 +48,6 @@ header {
 .main-apps {
   background-color: white;
   overflow-y: auto;
-  padding: 2em 2.5em;
-}
-#Notes-app {
-  font-family: "poppins", sans-serif;
 }
 
 nav {
@@ -94,13 +90,15 @@ nav {
   background-color: rgb(202, 201, 200);
 }
 
-#Tasks-app {
+#Tasks-app,
+#tasks-completed {
   font-family: "poppins", sans-serif;
   color: #242f36;
   min-width: 300px;
   overflow-y: auto;
   background-color: white;
   padding-bottom: 2em;
+  margin: 2em;
 }
 
 .container {
