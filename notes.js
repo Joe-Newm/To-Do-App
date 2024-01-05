@@ -1,8 +1,8 @@
 function updateDateTime() {
-    // create a new `Date` object
+    // new `Date` object
     const now = new Date();
 
-    // define the options for formatting
+    // define the options 
     const options = {
         year: 'numeric',
         month: 'long',
