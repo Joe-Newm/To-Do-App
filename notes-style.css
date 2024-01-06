@@ -18,27 +18,22 @@
 }
 
 .notes-nav {
-  height: 83vh;
+  height: 82.5vh;
   background-color: rgb(242, 241, 239);
   padding-top: 10px;
+
 }
 
 .new-note-container {
-  position: absolute;
-  bottom: 0;
   border-top: 2px solid #d1d3d4;
   background-color: rgb(242, 241, 239);
-  height: 65px;
-  min-width: 26.05em;
   padding-left: 2em;
   padding-right: 2em;
   display: flex;
-  gap: 1em;
   font-weight: 600;
   color: #242f36;
-  display: flex;
   align-items: center;
-  
+  height: 65px;
 }
 
 #new-note-button {
