@@ -53,7 +53,7 @@
 
 #notes-container {
   display: flex;
-  width: 45em;
+  width: 40em;
   flex-direction: column;
 }
 
