@@ -1,6 +1,8 @@
 const noteTextarea = document.getElementById('note-input');
+const addNoteBtn = document.getElementById("#new-note-button");
 
 // Load the saved note from local storage when the page loads
+function loadNoteInput () {
 noteTextarea.value = localStorage.getItem('savedNote') || '';
 
 // Add an input event listener to the textarea
@@ -8,6 +10,7 @@ noteTextarea.addEventListener('input', function() {
     // Save the note content to local storage
     localStorage.setItem('savedNote', this.value);
 });
+}
 
 // puts time above note
 function updateDateTime() {
@@ -31,4 +34,6 @@ function updateDateTime() {
 }
 
 setInterval(updateDateTime, 1000)
+
+
 
