@@ -35,6 +35,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+  gap: 1em;
 }
 
 #new-note-button {
