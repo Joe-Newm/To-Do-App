@@ -12,16 +12,14 @@
 
 .notes-nav-wrapper {
   display: flex;
-  flex-direction: column;
-  width: 50em;
+  flex-grow: 1;
   border-right: 2px solid #d1d3d4;
 }
 
 .notes-nav {
-  height: 82.5vh;
   background-color: rgb(242, 241, 239);
   padding-top: 10px;
-
+  width: 100%;
 }
 
 .new-note-container {
@@ -34,6 +32,9 @@
   color: #242f36;
   align-items: center;
   height: 65px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 #new-note-button {
@@ -51,7 +52,7 @@
 
 #notes-container {
   display: flex;
-  width: 100%;
+  width: 45em;
   flex-direction: column;
 }
 
@@ -65,6 +66,7 @@
   padding-left: 2em;
   position: absolute;
   bottom: 0;
+  
 }
 
 #note-input {
