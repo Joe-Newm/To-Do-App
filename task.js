@@ -181,12 +181,5 @@ newTaskInput.addEventListener("keyup", (event) => {
 
 
 
-// checkbox.addEventListener("change", () => {
-//   if (checkbox.checked) {
-//     checkbox.parentElement.parentElement.
-//   }
-//   else {
 
-//   }
-// })
 
